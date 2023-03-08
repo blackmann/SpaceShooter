@@ -1,0 +1,96 @@
+[gd_scene load_steps=13 format=3 uid="uid://b6ee23lem2tvs"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_p5dml"]
+[ext_resource type="Texture2D" uid="uid://na4snyr27kd0" path="res://Assets/playertileset.png" id="2_q0ejc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53be3"]
+atlas = ExtResource("2_q0ejc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0obn"]
+atlas = ExtResource("2_q0ejc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41i8g"]
+atlas = ExtResource("2_q0ejc")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j31wv"]
+atlas = ExtResource("2_q0ejc")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfxnf"]
+atlas = ExtResource("2_q0ejc")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gxsk"]
+atlas = ExtResource("2_q0ejc")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70dfs"]
+atlas = ExtResource("2_q0ejc")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbier"]
+atlas = ExtResource("2_q0ejc")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtlco"]
+atlas = ExtResource("2_q0ejc")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f2wjv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53be3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0obn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41i8g")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j31wv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfxnf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3gxsk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70dfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbier")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtlco")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 5.0
+}]
+
+[node name="Player" type="Node2D"]
+position = Vector2(320, 190)
+scale = Vector2(2, 2)
+script = ExtResource("1_p5dml")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_f2wjv")
+animation = &"moving"
+
+[node name="FireRate" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[connection signal="timeout" from="FireRate" to="." method="_on_fire_rate_timeout"]

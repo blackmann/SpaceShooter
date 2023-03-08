@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpd05agr2kuda"]
+
+[ext_resource type="PackedScene" uid="uid://d2vdkrglrp6rq" path="res://Scenes/Background.tscn" id="1_jlvrt"]
+[ext_resource type="PackedScene" uid="uid://b6ee23lem2tvs" path="res://Scenes/Player.tscn" id="2_3r1gh"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TextureRect" parent="." instance=ExtResource("1_jlvrt")]
+
+[node name="Player" parent="." instance=ExtResource("2_3r1gh")]
