@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfpspl6s2fef6"]
+
+[ext_resource type="Script" path="res://Scripts/Asteroid.gd" id="1_auxta"]
+[ext_resource type="Texture2D" uid="uid://ckn8pv6uxgcy6" path="res://Assets/Asteroids#01.png" id="2_gir8h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3svfd"]
+size = Vector2(36, 38)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_auxta")
+health = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_gir8h")
+region_enabled = true
+region_rect = Rect2(40, 5, 35, 38)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_3svfd")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(1.8, 1.9)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
