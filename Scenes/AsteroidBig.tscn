@@ -1,10 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfpspl6s2fef6"]
+[gd_scene load_steps=6 format=3 uid="uid://bfpspl6s2fef6"]
 
 [ext_resource type="Script" path="res://Scripts/Asteroid.gd" id="1_auxta"]
 [ext_resource type="Texture2D" uid="uid://ckn8pv6uxgcy6" path="res://Assets/Asteroids#01.png" id="2_gir8h"]
+[ext_resource type="Texture2D" uid="uid://dc2yvuch3nc10" path="res://Assets/AsteroidSmall.png" id="3_kf18a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3svfd"]
 size = Vector2(36, 38)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jnrkp"]
+lifetime_randomness = 0.39
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 85.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.6
+scale_max = 0.8
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_auxta")
@@ -22,6 +36,18 @@ shape = SubResource("RectangleShape2D_3svfd")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2(1.8, 1.9)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_jnrkp")
+texture = ExtResource("3_kf18a")
+lifetime = 4.0
+one_shot = true
+speed_scale = 3.0
+explosiveness = 0.42
+randomness = 0.37
+fixed_fps = 60
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
